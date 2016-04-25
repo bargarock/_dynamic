@@ -1,94 +1,49 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Random Message Example</title>
-	<script type="text/javascript" src="https://fb.me/react-0.13.3.js"></script>
-	<script type="text/javascript" src="https://fb.me/JSXTransformer-0.13.3.js"></script>
-	<script type="text/jsx">
-		var messages = ['HelloWorld', 'HelloPlanet', 'HelloUniverse'];
-		var textMessages = convertArrayToText();
-		
-		function convertArrayToText() {
-			var textMessages = "";
-			for(var i = 0; i < messages.length; i++) {
-				textMessages += messages[i] + ((i < messages.length - 1) ? ", " : "");
-			}
-			return textMessages;
-		}
+  <head>
+    <meta charset="utf-8" />
+    <title>React Tutorial</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    <script type="text/babel">
+/*
 
-		// create 'Greeting' component
-		var Greeting = React.createClass({
-			render: function() {
-				return (
-					<div>
-						<p>{this.props.messages}</p>
-						<p>[Index={this.props.idx}] {this.props.message}</p>
-					</div>
-				);
-			}
-		});
+        class HelloWorld extends React.Component {
+            render(){
+                return <h1>Hello World</h1>
+            }
+        }
+ 
+        ReactDOM.render(
+            <HelloWorld />, document.getElementById('content')
+        );
+*/
 
-		// create 'RandomMessage' component (parent of 'MessageView' component)
-		var RandomMessage = React.createClass({
-			getInitialState: function() {
-				return {message: 'HelloUniverse'};
-			},
-
-			_onClick: function() {
-				var idx = Math.floor((Math.random()) * 3);
-				var randomMessage = messages[idx];
-
-				this.setState({message: randomMessage});
-			},
-
-			render: function() {
-				return (
-					<div>
-						<MessageView message={this.state.message}/>
-						<p><input type="button" onClick={this._onClick} value="Change Message"/></p>
-					</div>
-				);
-			}
-		});
-
-		// create 'MessageView' component (child of 'RandonMessage' component)
-		var MessageView = React.createClass({
-			render: function() {
-				return (
-					<p>{this.props.message}</p>
-				)
-			}
-		});
-
-
-		// rendering
-		/*
-		 *	(1) automatically show messages randomly
-		 *
-			setInterval(function() {
-				var idx = Math.floor((Math.random()) * 3);
-				var randomMessage = messages[idx];
-
-				React.render(
-					<Greeting idx={idx} message={randomMessage} messages={textMessages} />,
-					document.getElementById('greeting-div')
-				);
-			}, 2000);
-		*/
-
-		/*
-		 *	(2) adapt onClick event
-		 */
-			var idx = Math.floor((Math.random()) * 3);
-			var randomMessage = messages[idx];
-
-			React.render(
-				<RandomMessage />,
-				document.getElementById('greeting-div')
-			);
-	</script>
-</head>
-<body>
-	<div id="greeting-div"></div>
-</body>
+        class HelloWorld extends React.Component {
+            propTypes: {
+                name: React.PropTypes.string
+            }
+ 
+            render() {
+                return <h1>Hello {this.props.name}</h1>
+            }
+        }
+ 
+        HelloWorld.defaultProps = {
+            name: "Velopert"
+        }
+ 
+        ReactDOM.render(
+            <HelloWorld name="World"/>, document.getElementById('content')
+        );
+    </script>
+  </head>
+  <body>
+    <div id="content"></div>
+    <script type="text/babel">
+ 
+    </script>
+  </body>
 </html>
